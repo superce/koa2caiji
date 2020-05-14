@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>9</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1></h1>
+    <!-- <%= title %> -->
+    <ul>
+      <%array.forEach(function(item){ %>
+        <li>
+          <a href="detail?id=<%= item.group_id %>">
+            <h4><%= item.title %></h4>
+          </a>
+        </li>
+      <%})%>
+    </ul>
+  </body>
+</html>
