@@ -1,5 +1,5 @@
 function wait(){
-    console.log('等待2s')
+    console.log('等待10s')
     return new Promise(resovle =>{
         setTimeout(()=>{
             console.log('结束等待')

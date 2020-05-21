@@ -17,7 +17,6 @@ let query = function (sql,value) {
           if (err) {
             reject(err)
           } else {
-            console.log('成功')
             let string = JSON.stringify(rows)
             let parse = JSON.parse(string)
             resolve(parse)

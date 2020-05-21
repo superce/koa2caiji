@@ -27,7 +27,7 @@ async function addInsert(params,type){
     let add = ''
     whereId(params).then(async res=>{
         let date = moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
-        let sql = `insert into article_list (id,title,article_id,href,content,type,create_date) values ("${guid()}","${title}","${gid}","${href}","${decri}","${type}","${date}")`
+        let sql = `insert into article_list (id,title,article_id,href,content,type,create_date) values ('${guid()}','${title}','${gid}','${href}','${decri}','${type}','${date}')`
         add = await query(sql)  
     }).catch(err =>{
         console.log(err)
@@ -67,7 +67,7 @@ exports.fuqi = async function(){
     for(let c = 0;c<categroy.length;c++){
         let url = config.url+categroy[c].cate
         console.log(url)   
-        for(let i=1;i<22;i++){
+        for(let i=1;i<5;i++){
             await wait()  
             let link = url
             if(i>1){
@@ -75,7 +75,8 @@ exports.fuqi = async function(){
             }
             saveArticle(link,categroy[c].type)
         }
+        // 开始采集详情页
+        console.log('开始采集详情页')
+        detail.detail()
     }
-    // 开始采集详情页
-    detail.detail()
 }
