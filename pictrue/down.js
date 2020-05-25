@@ -22,13 +22,14 @@ if (!fs.existsSync(dirPath)) {
 */
 
 function downFile(url) {
-    let guid = guid()+'.jpg'
+    // let guid = '123'+'.jpg'
+    // console.log(guid)
     return new Promise(function (resolve, reject) {
         request(url, function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                let stream = fs.createWriteStream(path.join(dirPath, guid));
+                let stream = fs.createWriteStream(path.join(dirPath, '123'+'.jpg'));
                 request(url).pipe(stream).on("close", function (err) {
-                    resolve(`下载成功,图片名称：${guid}`);
+                    resolve(`下载成功,图片名称`);
                     console.log(dirPath)
                 });
             } else {
@@ -44,13 +45,9 @@ function downFile(url) {
 }
 
 exports.down = async function(){
-    // console.log(pictrueUrl.pictureUrl())
-    pictrueUrl.pictureUrl().then(res =>{
-        console.log(res)
-    })
-    // arrayUrl.forEach(item => {
-    //     downFile(item).then(res => {
-    //         console.log(res)
-    //     })
-    // });
+    let url = await pictrueUrl.pictureUrl()
+    console.log(url)
+    // downFile(url).then(res =>{
+    //     console.log(res)
+    // })
 }

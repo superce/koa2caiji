@@ -7,26 +7,32 @@ const wait = require('../wait/index')
 const $html = require('../cheerio/index')
 
 
-
+let imgUrl = ''
 function getPictrueUrl(url){
-    let imgUrl = []
-    superagent.get(url).charset('gb2312').buffer(true).end(async (err,res)=>{
+    
+    superagent.get(url).charset('utf-8').buffer(true).end(async (err,res)=>{
         if(err){
             console.log(err)
         }else{
             let html = res.text
-            console.log(html)
             let $ = $html.$html(html)  
-            // $('._2eec ._2eea').each(async (index,item)=>{
-            //     let img = $(item) //.find('._3x2f img').attr('src') 
+            // $('.index_only .box').each(async (index,item)=>{
+            //     let a = $(item).find('a').attr('href')
+            //     let img = $(item).find('img')
+            //     console.log(a)
             //     console.log(img)
             //     imgUrl.push(img)
             // })
+            let img = $('.down_img .imga img').attr('src')
+            imgUrl = img
+            console.log(imgUrl)
+            console.log(1)
+            return img
         }
     })
-    return imgUrl
 }
 
 exports.pictureUrl = async function(){
-    getPictrueUrl('https://www.facebook.com/pg/beauty.or.monster/photos/?ref=page_internal')
+    let ds = getPictrueUrl('http://sc.chinaz.com/tupian/200525054604.htm')
+    console.log(ds)
 }
