@@ -6,6 +6,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const fuqi = require('./fuqi/index')
+const down = require('./pictrue/down')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -36,7 +37,8 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
-fuqi.fuqi()
+// fuqi.fuqi()
+down.down()
 
 
 // error-handling

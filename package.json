@@ -23,6 +23,8 @@
     "koa-views": "^6.2.0",
     "moment": "^2.25.3",
     "mysql": "^2.18.1",
+    "path": "^0.12.7",
+    "request": "^2.88.2",
     "superagent": "^5.2.2",
     "superagent-charset": "^1.2.0"
   },
