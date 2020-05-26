@@ -1,7 +1,6 @@
 const fs = require('fs')
 const request = require('request')
 const path = require('path')
-const pictrueUrl = require('./index')
 const {guid} = require('../guid/index')
 
 
@@ -44,10 +43,7 @@ function downFile(url) {
 
 }
 
-exports.down = async function(){
-    let url = await pictrueUrl.pictureUrl()
+exports.down = async function(url){
     console.log(url)
-    // downFile(url).then(res =>{
-    //     console.log(res)
-    // })
+    downFile(url)
 }

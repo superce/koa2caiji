@@ -3,36 +3,39 @@ const config = require('../config/picture')
 const charset = require('superagent-charset')
 const superagent = charset(require('superagent'))
 const moment = require('moment')
+const {guid} = require('../guid/index')
 const wait = require('../wait/index')
 const $html = require('../cheerio/index')
+const down = require('./down')
 
+async function addPictrueUrl(href){
+    // let href = param.href
+    console.log(href)
+    let date = moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
+    let sql = `insert into picture_url (id,href,create_date) values ('${guid()}','${href}','${date}')`
+    let add = await query(sql) 
+    return add
+}
 
-let imgUrl = ''
 function getPictrueUrl(url){
-    
-    superagent.get(url).charset('utf-8').buffer(true).end(async (err,res)=>{
-        if(err){
-            console.log(err)
-        }else{
-            let html = res.text
-            let $ = $html.$html(html)  
-            // $('.index_only .box').each(async (index,item)=>{
-            //     let a = $(item).find('a').attr('href')
-            //     let img = $(item).find('img')
-            //     console.log(a)
-            //     console.log(img)
-            //     imgUrl.push(img)
-            // })
-            let img = $('.down_img .imga img').attr('src')
-            imgUrl = img
-            console.log(imgUrl)
-            console.log(1)
-            return img
-        }
+    return new Promise(resolve =>{
+        superagent.get(url).charset('utf-8').buffer(true).end(async (err,res)=>{
+            console.log(987)
+            if(err){
+                console.log(err)
+                console.log(33)
+            }else{
+                let html = res.text
+                let $ = $html.$html(html)  
+                let img = $('.floatItem .wrap img').attr('src')
+                resolve(img)
+            }
+        })
     })
 }
 
 exports.pictureUrl = async function(){
-    let ds = getPictrueUrl('http://sc.chinaz.com/tupian/200525054604.htm')
-    console.log(ds)
+    let url = config.url
+    let res = await getPictrueUrl(url)
+    down.down(res)
 }

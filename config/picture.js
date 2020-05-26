@@ -1,5 +1,5 @@
 module.exports = {
-    url:'https://www.facebook.com/pg/beauty.or.monster/photos/?ref=page_internal',
+    url:'http://www.news.cn/photo/index.htm',//'https://www.facebook.com/pg/beauty.or.monster/photos/?ref=page_internal',
     categroy:[
         {cate:'fuqi/',type:8},
         {cate:'lengxiaohua/',type:4},
